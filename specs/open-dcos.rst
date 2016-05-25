@@ -76,6 +76,9 @@ We propose extending Magnum as follows.
 
 2. Leverage mesos-slave-flags [3]_ to customize Open DC/OS.
 
+   Here is an example of creating an Open DC/OS baymodel that uses docker/volume
+   as isolator, linux as launcher and docker as image provider: ::
+
      magnum baymodel-create --name dcosbaymodel \
                             --image-id fedora-21-atomic-5 \
                             --keypair-id testkey \
@@ -86,12 +89,12 @@ We propose extending Magnum as follows.
                             --coe dcos\
                             --network-driver flannel \
                             --labels isolation=docker/volume,launcher=linux \
-                                     ,image_providers=docker,appc
+                                     ,image_providers=docker
 
   Magnum will validate the labels together with the driver specified before
   creating the bay and will return an error if the validation fails.
 
-  Magnum will continue to CRUD bays in the same way:
+  Magnum will continue to CRUD bays in the same way: ::
 
      magnum bay-create --name dcosbay --baymodel dcosbaymodel --node-count 1
 
