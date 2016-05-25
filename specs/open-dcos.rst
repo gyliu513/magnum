@@ -92,10 +92,10 @@ We propose extending Magnum as follows.
                                      launcher=linux, \
                                      image_providers=docker
 
-  Magnum will validate the labels together with the driver specified before
-  creating the bay and will return an error if the validation fails.
+   Magnum will validate the labels together with the driver specified before
+   creating the bay and will return an error if the validation fails.
 
-  Magnum will continue to CRUD bays in the same way:
+   Magnum will continue to CRUD bays in the same way:
 
      magnum bay-create --name dcosbay --baymodel dcosbaymodel --node-count 1
 
