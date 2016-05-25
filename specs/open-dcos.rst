@@ -88,14 +88,15 @@ We propose extending Magnum as follows.
                             --docker-volume-size 5 \
                             --coe dcos\
                             --network-driver flannel \
-                            --labels isolation=docker/volume,launcher=linux \
-                                     ,image_providers=docker
+                            --labels isolation=docker/volume,\
+                                     launcher=linux, \
+                                     image_providers=docker
 
 
   Magnum will validate the labels together with the driver specified before
   creating the bay and will return an error if the validation fails.
 
-  Magnum will continue to CRUD bays in the same way: ::
+  Magnum will continue to CRUD bays in the same way:
 
      magnum bay-create --name dcosbay --baymodel dcosbaymodel --node-count 1
 
