@@ -91,6 +91,7 @@ We propose extending Magnum as follows.
                             --labels isolation=docker/volume,launcher=linux \
                                      ,image_providers=docker
 
+
   Magnum will validate the labels together with the driver specified before
   creating the bay and will return an error if the validation fails.
 
