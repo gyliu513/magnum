@@ -33,12 +33,13 @@ steps to install a Open DC/OS cluster.
 Problem Description
 ===================
 
-Containers are the first citizen in Magnum, but the concept of container is
-not only limited in docker container, but also others, such as AppC, linux
-container etc. Magnum now mainly focusing on docker container management
-integration, it can now work well with Mesos, Kuernetes and Swarm. But most
-of those COE are focusing on docker management and they cannot manage other
-containers, such as AppC, linux container etc.
+COEs (Container Orchestration Engines) are the first citizen in Magnum, there
+are different COEs in Magnum now including Kubernetes, Swarm and Mesos. All of
+those COEs are focusing docker container management, the problem is that the
+concept of container is not only limited in docker container, but also others,
+such as AppC, linux container etc, Open DC/OS is planning to support different
+containers by leveraging Mesos unified container feature and the Open DC/OS has
+a better management console for container orchestration.
 
 Currently, Magnum provides limited support for Mesos Bay as there is only one
 framework named as Marathon running on top of Mesos. Compared with Open DC/OS,
@@ -80,14 +81,13 @@ We propose extending Magnum as follows.
    as isolator, linux as launcher and docker as image provider: ::
 
      magnum baymodel-create --name dcosbaymodel \
-                            --image-id fedora-21-atomic-5 \
+                            --image-id dcos-centos-7.2 \
                             --keypair-id testkey \
                             --external-network-id 1hsdhs88sddds889 \
                             --dns-nameserver 8.8.8.8 \
                             --flavor-id m1.small \
                             --docker-volume-size 5 \
-                            --coe dcos\
-                            --network-driver flannel \
+                            --coe dcos \
                             --labels isolation=docker/volume,\
                                      launcher=linux, \
                                      image_providers=docker
@@ -102,7 +102,8 @@ We propose extending Magnum as follows.
 3. Keep the old Mesos Bay and add a new Open DC/OS Bay. Once the Open DC/OS Bay
    is stable, deprecate the Mesos Bay. 
 
-4. Update unit and functional tests to support Open DC/OS Bay.
+4. Update unit and functional tests to support Open DC/OS Bay, it is also an
+   option to verify the Open DC/OS Bay in gate.
 
 5. Preserve the user experience by ensuring that any operation on Open DC/OS
    Bay will be identical between a COE deployed by Magnum and a COE deployed
@@ -143,7 +144,7 @@ Work Items
 Dependencies
 ============
 
-1. This blue print will focus on running on Open DC/OS in CentOS 7.1.
+1. This blueprint will focus on running on Open DC/OS in CentOS 7.2.
 
 2. Depend on blueprint
 
